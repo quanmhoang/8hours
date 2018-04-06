@@ -3,6 +3,7 @@ import baseWebpackConfig from './webpack.base'
 import WriteFilePlugin from 'write-file-webpack-plugin'
 import AutoDllPlugin from 'autodll-webpack-plugin'
 import FriendlyErrorsPlugin from 'razzle-dev-utils/FriendlyErrorsPlugin'
+import OpenBrowserPlugin from 'open-browser-webpack-plugin'
 import config from '../config'
 
 const {vendor, polyfills, DEV_SERVER_PORT, HOST, PORT} = config
@@ -60,7 +61,8 @@ baseWebpackConfig.plugins.push(
 		verbose: true,
 		target: 'web',
 		onSuccessMessage: `Your application is running at http://${HOST}:${PORT}`
-	})
+	}),
+	new OpenBrowserPlugin({ url: `http://${HOST}:${PORT}` })
 )
 
 baseWebpackConfig.devServer = {
@@ -91,6 +93,7 @@ baseWebpackConfig.devServer = {
 	watchOptions: {
 		ignored: /node_modules/
 	}
+
 }
 
 export default baseWebpackConfig
