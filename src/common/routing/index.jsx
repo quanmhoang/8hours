@@ -61,6 +61,10 @@ function routingFnCreator (useFor) {
 			name: 'Links'
 		},
 		{
+			path: '/auth/google',
+			exact: true
+		},
+		{
 			component: asyncComponentCreator('NotFound'),
 			name: '404'
 		}
